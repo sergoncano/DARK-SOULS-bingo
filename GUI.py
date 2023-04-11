@@ -23,9 +23,11 @@ for x in range(5):
         u = urlopen(image_url)
         data = u.read()
         u.close()
-        image = ImageTk.PhotoImage(data=data)
-
-        buttonlist.append(ttk.Button(text=item,image=image, command=lambda itm = item: onClick(itm)))
+        img = ImageTk.PhotoImage(data=data)
+        btn = ttk.Button(text=item, command=lambda itm = item: onClick(itm))
+        btn.image = img
+        buttonlist.append(btn)
         buttonlist[counter].grid(row=x, column=y, ipadx=50, ipady=50)
         counter = counter+1
+
 window.mainloop()
