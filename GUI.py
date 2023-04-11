@@ -7,7 +7,7 @@ import webbrowser
 
 
 seed = input('Input seed: ')
-
+print('Loading...')
 window = Tk()
 
 window.title('DARK SOULS bingo')
@@ -32,7 +32,7 @@ for x in range(5):
         buttonlist.append(btn)
         imagelist.append(img)
         buttonlist[counter].config(image=imagelist[counter])
-        buttonlist[counter].grid(row=x, column=y, ipadx=30, ipady=30)
+        buttonlist[counter].grid(row=x, column=y, ipadx=15, ipady=15)
         counter = counter+1
 
 window.mainloop()
