@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from sections import sections
+from sections import sections, not_items
 from urllib import parse
 import random
 def get_items(section):
@@ -39,13 +39,20 @@ def get_wiki_url(item):
     item_url = parse.quote_plus(item)
     return f'https://darksouls.wiki.fextralife.com/{item_url}'
 
-def bingo():
+def bingo(sd):
+    if sd != "":
+        random.seed(sd)
+    all_items = []
+    for section in sections:
+        items = get_items(section)
+        for i in items:
+            all_items.append(i)
+    for item in not_items:
+        if item in all_items:
+            all_items.remove(item)
     bingolist = []
     for _ in range(25):
-        section = sections[random.randint(0, len(sections) - 1)]
-        items = get_items(section)
-        item = items[random.randint(0, len(items) - 1)]
-        bingolist.append(item)
+        bingolist.append(all_items[random.randint(0, len(all_items)-1)])
     return bingolist
 
 
